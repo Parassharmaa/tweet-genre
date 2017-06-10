@@ -1,0 +1,14 @@
+<md-card class="search-card">
+     <md-progress-bar mode="indeterminate" color="primary" *ngIf="showId"></md-progress-bar>
+    <md-input-container class="full-width">
+      <input mdInput placeholder="@username" (keyup)="onKey($event)">
+    </md-input-container>
+</md-card>
+<br>
+
+<md-card>
+  <p>{{values}}</p>
+
+  {{myData}}
+
+</md-card>
