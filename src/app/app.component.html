@@ -1,14 +1,58 @@
-<md-card class="search-card">
-     <md-progress-bar mode="indeterminate" color="primary" *ngIf="showId"></md-progress-bar>
-    <md-input-container class="full-width">
-      <input mdInput placeholder="@username" (keyup)="onKey($event)">
-    </md-input-container>
+<md-progress-bar mode="indeterminate" color="primary" *ngIf="showId"></md-progress-bar>
+
+<md-toolbar color="primary">
+  <span><b>{{title}}</b></span>
+
+  <span class="nav-spacer">
+  </span>
+
+  <button md-icon-button [mdMenuTriggerFor]="menu">
+    <md-icon>more_vert</md-icon>
+  </button>
+  <md-menu #menu="mdMenu">
+    <a href="http://parazz.me">
+    <button md-menu-item>
+      <md-icon>info_outline</md-icon>
+      <span>About Me</span>
+    </button>
+    </a>
+  </md-menu>
+</md-toolbar>
+
+<md-card class="search-card button-row">
+  <h3>{{sub}}</h3>
+  <table>
+    <tr>
+      <td><input mdInput placeholder="Twitter @username" autofocus (keyup)="onKey($event)"></td>
+      <td><md-icon class="md-18|md-24|md-36|md-48">search</md-icon></td>
+    </tr>
+  </table>
 </md-card>
+
+<br>
+<md-card *ngIf="showError" class="content-center">
+    <md-card-content>
+        <h4 class="error">{{error}}</h4>
+    </md-card-content>
+</md-card>
+
 <br>
 
-<md-card>
-  <p></p>
+<md-card *ngIf="showResult" class="content-center">
 
-  {{myData}}
+  <h3>Majority and Minority Tweet Topics</h3>
+  <div class="wrapper">
+  <div id="gauge_chart"
+        [chartData]="gauge_ChartData"
+        [chartOptions]= "gauge_ChartOptions"
+        chartType="Gauge"
+        GoogleChart></div>
+  <hr>
+  <h3> Topics Percentage</h3>
+  <div id="pie_chart"
+    [chartData]="pie_ChartData"
+    [chartOptions] = "pie_ChartOptions"
+    chartType="PieChart" GoogleChart></div>
 
+  </div>
 </md-card>
